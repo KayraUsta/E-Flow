@@ -92,7 +92,7 @@ Bu yapı sayesinde süreçler sadece otomatik değil, akıllı ve dinamik hale g
 Mobil cihazlarla da süreç başlatmak, onaylamak veya gözlemlemek mümkündür.  
 Bu, özellikle saha çalışanları veya seyahat eden yöneticiler için büyük avantaj sağlar.
 
-![Eflow Mobil](assets/eflowmobil.jpg)
+<img src="assets/eflowmobil.jpg" alt="Eflow Mobil" width="50%">
 
 ---
 
