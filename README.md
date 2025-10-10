@@ -3,7 +3,7 @@
 **E-Flow**, kurumların iç işleyişini dijitalleştirmek, izlenebilir hale getirmek ve verimli bir biçimde yönetmek amacıyla geliştirilmiş, kod gerektirmeden süreç tasarımı yapılabilen bir **İş Süreçleri Yönetim Sistemi (BPM)**’dir.  
 Gelişmiş sürükle-bırak arayüzü sayesinde teknik bilgisi olmayan kullanıcılar bile kolayca iş akışlarını oluşturabilir ve süreçleri canlı sistemde çalıştırabilir.
 
-![Eflow Dashboard](eflowboard.png)
+![Eflow Dashboard](assets/eflowboard.png)
 
 ---
 
