@@ -1,0 +1,54 @@
+------------------------------------
+
+SELECT LEFT((convert(varchar, getdate(), 6)),2)
+
+
+-----------------------------------
+
+--S�REC�N TANIMI VE BA�LA�IKLARI ALTYAPI     
+SELECT  * FROM EFLOW..TMPL_ACT_TASK WHERE CID=61-- G�REV FORMLARI
+SELECT AID, * FROM EFLOW..TMPL_ACT_MASTER WHERE CID=80--DE���KENLER
+select * from  EFLOW..INST_COURSE WHERE CID=70  --AKT�F S�RE�LER
+SELECT  * FROM EFLOW..TMPL_COURSE_MASTER	--S�RE� TANIMI  --- sürecin .cıd idsini bull 11111
+SELECT * FROM TMPL_DATA_DICTIONARY WHERE CID=cidkodunugir --DE���KENLER�N TABLOSU  -----  yukarda buldugun cid id koy  2222 ---- burda DID id var tablonun onu bul
+
+
+-----------------------------------
+
+
+
+USE [eflow]
+GO
+
+--İNSERT İNTOYU VERİTABANINA GÖRE GİR
+
+INSERT INTO [dbo].[Tablo_Adi]				
+           ([BOŞ]
+           ,[BOŞ]
+           ,[BOŞ]
+           ,[BOŞ]
+           ,[BOŞ]
+           ,[BOŞ]
+           ,[BOŞ]
+           ,[BOŞ]
+           ,[BOŞ])
+    
+          SELECT 
+x.Rec.query('./ColumnData[1]').value('.', 'NVARCHAR(100)')'BOŞ' ,
+x.Rec.query('./ColumnData[2]').value('.', 'NVARCHAR(100)')'BOŞ',
+x.Rec.query('./ColumnData[3]').value('.', 'NVARCHAR(100)')'BOŞ',
+x.Rec.query('./ColumnData[4]').value('.', 'NVARCHAR(100)')'BOŞ',
+x.Rec.query('./ColumnData[5]').value('.', 'NVARCHAR(100)')'BOŞ',
+x.Rec.query('./ColumnData[6]').value('.', 'NVARCHAR(100)')'BOŞ',
+x.Rec.query('./ColumnData[7]').value('.', 'NVARCHAR(100)')'BOŞ',
+x.Rec.query('./ColumnData[8]').value('.', 'NVARCHAR(100)')'BOŞ',
+x.Rec.query('./ColumnData[9]').value('.', 'NVARCHAR(100)')'BOŞ'
+
+
+
+
+FROM (select cast(VALUE as XML) as xdt FROM EFLOW.DBO.INST_DATA_MEMO WHERE DID=bulduğundidigir AND CIID=süreçidgir) e
+CROSS APPLY e.xdt.nodes('/LineItemTable/TableData/Data') as x(Rec)
+
+
+GO
