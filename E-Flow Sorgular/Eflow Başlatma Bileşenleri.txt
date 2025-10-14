@@ -1,0 +1,20 @@
+--Başlatma bileşenleri tabloları.sql
+
+use eflow
+
+--++	Select * from TMPL_SP_xxxxxx -- Başlatma bileşenleri tabloları
+
+Select * from TMPL_SP_RECURRINGSCAN -- Yinelemeli DB Tarama
+
+
+
+
+
+
+
+
+
+
+
+
+
