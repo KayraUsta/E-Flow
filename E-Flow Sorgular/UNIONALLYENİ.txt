@@ -1,0 +1,51 @@
+SELECT
+    x.Rec.query('./ColumnData[1]').value('.', 'bit') AS Onay,
+    x.Rec.query('./ColumnData[2]').value('.', 'NVARCHAR(MAX)') AS TeklifDokumani,
+    x.Rec.query('./ColumnData[3]').value('.', 'NVARCHAR(MAX)') AS Tedarikci,
+    x.Rec.query('./ColumnData[4]').value('.', 'NVARCHAR(MAX)') AS MalzemeKodu,
+    x.Rec.query('./ColumnData[5]').value('.', 'NVARCHAR(MAX)') AS MalzemeOz,
+    x.Rec.query('./ColumnData[6]').value('.', 'NVARCHAR(MAX)') AS Miktar,
+    x.Rec.query('./ColumnData[7]').value('.', 'NVARCHAR(MAX)') AS Birim,
+    x.Rec.query('./ColumnData[8]').value('.', 'NVARCHAR(MAX)') AS SonFiyat,
+    x.Rec.query('./ColumnData[9]').value('.', 'NVARCHAR(MAX)') AS BirimFiyat,
+    x.Rec.query('./ColumnData[10]').value('.', 'NVARCHAR(MAX)') AS ParaBirimi,
+	x.Rec.query('./ColumnData[11]').value('.', 'NVARCHAR(MAX)') AS Kur,
+    x.Rec.query('./ColumnData[12]').value('.', 'NVARCHAR(MAX)') AS Toplam,
+    x.Rec.query('./ColumnData[13]').value('.', 'NVARCHAR(MAX)') AS Aciklama,
+    x.Rec.query('./ColumnData[14]').value('.', 'NVARCHAR(MAX)') AS CariVade,
+x.Rec.query('./ColumnData[15]').value('.', 'NVARCHAR(MAX)') AS SatirTuru
+FROM 
+(
+    SELECT CAST(VALUE AS XML) AS xdt 
+    FROM EFLOW.DBO.INST_DATA_MEMO 
+    WHERE DID = 10003 AND CIID = %surec_id%
+) e
+CROSS APPLY e.xdt.nodes('/LineItemTable/TableData/Data') AS x(Rec)
+--WHERE x.Rec.query('./ColumnData[1]').value('.', 'bit') = 1
+
+UNION ALL
+
+SELECT
+    '' AS Sec,
+	'' AS TeklifDokumani,
+	'' AS Tedarikci,
+    x.Rec.query('./ColumnData[3]').value('.', 'NVARCHAR(MAX)') AS MalzemeAdi,
+    x.Rec.query('./ColumnData[4]').value('.', 'NVARCHAR(MAX)') AS MalzemeOz,
+    x.Rec.query('./ColumnData[6]').value('.', 'NVARCHAR(MAX)') AS Miktar,
+    x.Rec.query('./ColumnData[7]').value('.', 'NVARCHAR(MAX)') AS Birim,
+    x.Rec.query('./ColumnData[8]').value('.', 'NVARCHAR(MAX)') AS SonFiyat,
+	'' AS BirimFiyat,
+	x.Rec.query('./ColumnData[10]').value('.', 'NVARCHAR(MAX)') AS ParaBirimi,
+	36 AS Kur,
+    x.Rec.query('./ColumnData[9]').value('.', 'NVARCHAR(MAX)') AS Toplam,
+x.Rec.query('./ColumnData[11]').value('.', 'NVARCHAR(MAX)') AS Aciklama,
+'' AS CariVade,
+N'Satır' AS SatirTuru
+FROM 
+(
+    SELECT CAST(VALUE AS XML) AS xdt 
+    FROM EFLOW.DBO.INST_DATA_MEMO 
+    WHERE DID = 10025 AND CIID = %surec_id%
+) e
+CROSS APPLY e.xdt.nodes('/LineItemTable/TableData/Data') AS x(Rec)
+WHERE x.Rec.query('./ColumnData[1]').value('.', 'bit') = 1;
