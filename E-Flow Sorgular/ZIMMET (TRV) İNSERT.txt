@@ -1,0 +1,72 @@
+INSERT INTO [eflow].[dbo].[TRV_ZIMMET_K] (
+	  [Zimmetgiris],
+      [Zimmetalan],
+      [Zimmetveren],
+      [Demirbaskodu],
+      [FileID],
+      [Tarih],
+      [Miktar],
+      [Durum],
+      [Sorumlulukmerkezi],
+      [Proje],
+      [Aciklama]
+)
+SELECT
+    x.Rec.query('./ColumnData[1]').value('.', 'NVARCHAR(MAX)') AS Zimmetgiris,
+    x.Rec.query('./ColumnData[2]').value('.', 'NVARCHAR(MAX)') AS Zimmetalan,
+    x.Rec.query('./ColumnData[3]').value('.', 'NVARCHAR(MAX)') AS Zimmetveren,
+    x.Rec.query('./ColumnData[4]').value('.', 'NVARCHAR(MAX)') AS Demirbaskodu,
+	x.Rec.query('./ColumnData[5]').value('.', 'float') AS FileID,
+    x.Rec.query('./ColumnData[6]').value('.', 'Date') AS Tarih,
+    x.Rec.query('./ColumnData[7]').value('.', 'float') AS Miktar,
+    x.Rec.query('./ColumnData[8]').value('.', 'NVARCHAR(MAX)') AS Durum,
+    x.Rec.query('./ColumnData[9]').value('.', 'NVARCHAR(MAX)') AS Sorumlulukmerkezi,
+    x.Rec.query('./ColumnData[10]').value('.', 'NVARCHAR(MAX)') AS Proje,
+    x.Rec.query('./ColumnData[11]').value('.', 'NVARCHAR(MAX)') AS Aciklama
+FROM 
+(
+    SELECT cast(VALUE as XML) as xdt 
+    FROM EFLOW.DBO.INST_DATA_MEMO 
+    WHERE DID=10925 AND CIID=%surec_id%
+) e
+CROSS APPLY e.xdt.nodes('/LineItemTable/TableData/Data') as x(Rec);
+
+
+
+
+------------------------------------------------------------------------------------
+
+
+USE [eflow]
+GO
+
+--İNSERT İNTOYU VERİTABANINA GÖRE GİR
+
+INSERT INTO [dbo].[Tablo_Adi]				
+           ([BOŞ]
+           ,[BOŞ]
+           ,[BOŞ]
+           ,[BOŞ]
+           ,[BOŞ]
+           ,[BOŞ]
+           ,[BOŞ]
+           ,[BOŞ]
+           ,[BOŞ])
+    
+          SELECT 
+x.Rec.query('./ColumnData[1]').value('.', 'NVARCHAR(100)')'BOŞ' ,
+x.Rec.query('./ColumnData[2]').value('.', 'NVARCHAR(100)')'BOŞ',
+x.Rec.query('./ColumnData[3]').value('.', 'NVARCHAR(100)')'BOŞ',
+x.Rec.query('./ColumnData[4]').value('.', 'NVARCHAR(100)')'BOŞ',
+x.Rec.query('./ColumnData[5]').value('.', 'NVARCHAR(100)')'BOŞ',
+x.Rec.query('./ColumnData[6]').value('.', 'NVARCHAR(100)')'BOŞ',
+x.Rec.query('./ColumnData[7]').value('.', 'NVARCHAR(100)')'BOŞ',
+x.Rec.query('./ColumnData[8]').value('.', 'NVARCHAR(100)')'BOŞ',
+x.Rec.query('./ColumnData[9]').value('.', 'NVARCHAR(100)')'BOŞ'
+
+
+
+
+FROM (select cast(VALUE as XML) as xdt FROM EFLOW.DBO.INST_DATA_MEMO WHERE DID=bulduğundidigir AND CIID=süreçidgir) e
+CROSS APPLY e.xdt.nodes('/LineItemTable/TableData/Data') as x(Rec)
+
