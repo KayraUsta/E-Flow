@@ -1,0 +1,88 @@
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-7j62{background-color:#c0c0c0;font-size:14px;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-uf2l{background-color:#dae8fc;font-size:14px;text-align:left;vertical-align:top}
+</style>
+<table class="tg"><thead>
+  <tr>
+    <td class="tg-7j62">Oluşturan:</td>
+    <td class="tg-uf2l">%baslatan%</td>
+    <td class="tg-7j62">ID:</td>
+    <td class="tg-uf2l">%surec_id%</td>
+    <td class="tg-7j62">Tarih: </td>
+    <td class="tg-uf2l">%tarih%</td>
+  </tr></thead>
+</table>
+
+
+
+
+--------------------GÖKKUŞAĞILI TABLO-------------------
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gökkuşağı Yazılım Logo ve Tablo Animasyonu</title>
+<style>
+  @keyframes drop {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .drop-animation {
+    animation: drop 1s ease-out forwards;
+  }
+
+  .tg  {border-collapse:collapse;border-spacing:0;}
+  .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+    overflow:hidden;padding:10px 5px;word-break:normal;}
+  .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+    font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+  .tg .tg-kftd{background-color:#efefef;text-align:left;vertical-align:top}
+  .tg .tg-dcuf{background-color:#d3ebd3;text-align:left;vertical-align:top}
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo {
+    margin-top: 20px;
+    width: auto; /* Orijinal genişliği korumak için */
+    height: 50px; /* Sadece dikey boyutu ayarlamak için */
+    object-fit: contain; /* Orantıyı koruyarak logoyu içeri sığdırmak için */
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <table class="tg">
+    <img src="https://gokkusagiyazilim.com.tr/wp-content/uploads/2022/10/logo2.png" alt="Gökkuşağı Yazılım Logo" class="drop-animation logo">
+    <thead>
+      <tr>
+    <td class="tg-7j62">Oluşturan:</td>
+    <td class="tg-uf2l">%baslatan%</td>
+    <td class="tg-7j62">ID:</td>
+    <td class="tg-uf2l">%surec_id%</td>
+    <td class="tg-7j62">Tarih: </td>
+    <td class="tg-uf2l">%tarih%</td>
+      </tr>
+    </thead>
+  </table>
+
+</div>
+
+</body>
+</html>
