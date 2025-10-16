@@ -1,0 +1,21 @@
+INSERT INTO [dbo].[MK_KaliteGiris]
+           ([Baslatan]
+           ,[SurecID]
+           ,[OlusturmaTarihi]
+           ,[Stokkod]
+           ,[PersonelAdi]
+           ,[Sira]
+           ,[MinOlcu]
+           ,[MaxOlcu]
+           ,[İdealOlcu]
+           ,[OlcumTipi]
+           ,[OlcumKategorisi]
+           ,[Aciklama]
+,Aktif)
+     
+           (select %baslatan%, %surec_id%, %olusturma_tarihi%,
+%stok_kodu_adi%,%giris_yapan%,%sira%,%min_olcu%,%max_olcu%,%ideal_olcu%,%olcum_tipi%,%olcum_kategorisi%,%aciklama%,0
+
+		   
+		   
+		   )
