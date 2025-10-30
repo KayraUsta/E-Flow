@@ -105,7 +105,7 @@ Süreçlerinizi şeffaf, yönetilebilir ve geliştirilebilir hale getirerek zama
 
 # Designer Giriş Ekranı
 
-![Giriş Ekranı Görseli Örneği](giris.png)
+![Giriş Ekranı Görseli Örneği](assets/giris.png)
 
 Sisteme giriş yapılırken aşağıdaki bilgiler gereklidir:
 
@@ -125,7 +125,7 @@ Sisteme giriş yapılırken aşağıdaki bilgiler gereklidir:
 
 # Düzenleme Butonları
 
-![Düzenleme Butonları Görseli Örneği](duzen.png)
+![Düzenleme Butonları Görseli Örneği](assets/duzen.png)
 
 **Soldan Sağa:**  
 Yeni Süreç Başlatma, Yeni Liste Başlatma, Export (Sürecin Sistemden Dışarı Alınması), Import (Sürecin Sisteme Alınması), Düzen Butonları, Küçültme/Büyütme Butonları ve Yüzdelik Dilimi.
@@ -153,7 +153,7 @@ Bu sayede işlem **disk dosyasına aktarılacaktır.**
 
 # Designer Arayüzü
 
-![Designer Görseli Örneği](designer.png)
+![Designer Görseli Örneği](assets/designer.png)
 
 ## Eylem Araç Kutusu
 
