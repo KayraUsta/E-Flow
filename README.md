@@ -100,3 +100,96 @@ Bu, özellikle saha çalışanları veya seyahat eden yöneticiler için büyük
 
 **E-Flow**, işletmenizin dijital dönüşüm sürecinde kilit rol oynayabilecek bir BPM platformudur.  
 Süreçlerinizi şeffaf, yönetilebilir ve geliştirilebilir hale getirerek zaman ve kaynak tasarrufu sağlar.
+
+---
+
+# Designer Giriş Ekranı
+
+![Giriş Ekranı Görseli Örneği](giris.png)
+
+Sisteme giriş yapılırken aşağıdaki bilgiler gereklidir:
+
+- **Sistemdeki Firma Numarınız:** Kurumunuza özel tanımlı numaradır.  
+- **Kullanıcı Adınız:**  
+  - Kullanıcı adlarında ve şifrelerde **büyük/küçük harf ayrımı vardır**.  
+  - Maksimum **30 karakter** olabilir.  
+  - **Boşluk içerebilir.**  
+- **Şifreniz:**  
+  - Kişisel şifrenizi giriniz.  
+  - **Büyük/küçük harf duyarlıdır.**  
+  - Şifreler görünmez.  
+  - Güçlü bir şifre **tahmin edilmesi zor ama hatırlanması kolay** olmalıdır.  
+- **Dil Seçimi:** Giriş ekranında dil seçimi yapılabilir.
+
+---
+
+# Düzenleme Butonları
+
+![Düzenleme Butonları Görseli Örneği](duzen.png)
+
+**Soldan Sağa:**  
+Yeni Süreç Başlatma, Yeni Liste Başlatma, Export (Sürecin Sistemden Dışarı Alınması), Import (Sürecin Sisteme Alınması), Düzen Butonları, Küçültme/Büyütme Butonları ve Yüzdelik Dilimi.
+
+---
+
+# İşlem Aktarımı
+
+## İşlemin Sisteme Alınması (Import)
+
+Dosya menüsünden **“İçeri Al (Import)”** seçeneğini seçin.  
+İçeri almak istediğiniz süreç dosyasını bulun, dosyayı seçin ve **“Aç”** tuşuna tıklayın.  
+
+> Eğer işlemde henüz sunucu üzerinde bulunmayan güvenlik grupları varsa, sistem bu grupları **otomatik oluşturmak isteyip istemediğinizi** sorar.
+
+---
+
+## İşlemin Sistemden Gönderilmesi (Export)
+
+Bir işlemi dışa aktarmak için Dosya menüsünden **“Dışarı Aktar (Export)”** seçeneğini seçin.  
+Açılan pencerede dosya ismini girin ve **“Kaydet”** tuşuna tıklayın.  
+Bu sayede işlem **disk dosyasına aktarılacaktır.**
+
+---
+
+# Designer Arayüzü
+
+![Designer Görseli Örneği](designer.png)
+
+## Eylem Araç Kutusu
+
+**Eylem araç kutusu**, bir süreçte kullanılabilecek bütün eylemleri içerir.  
+Eylem bileşenleri, araç kutusundan **fare ile sürüklenerek** *İşlem Tasarım Penceresi*’ne bırakılabilir.
+
+> Ekran boyutuna göre kaydırma çubuğu kullanmanız gerekebilir.
+
+---
+
+## Süreç Gezgini
+
+**Süreç Gezgini** sistemdeki klasörleri ve süreçleri listeler:
+
+- **Klasörler:** klasör ikonu ile gösterilir.  
+- **Süreçler:** kırmızı veya yeşil ikonlarla belirtilir.  
+  - 🟥 **Kırmızı ikonlar:** Geliştirme veya test aşamasındaki süreçler  
+  - 🟩 **Yeşil ikonlar:** Yayınlanmış süreçler  
+
+> Artı işaretli klasörler çift tıklandığında içerikleri görüntülenebilir.
+
+---
+
+## Veri Elementleri Gezgini
+
+Bir süreçle ilgili **veri öğeleri**, **“Veri Öğesi Gezgininde”** listelenir.  
+Bu alanda yalnızca **aktif süreçle** ilgili veriler gösterilir.
+
+---
+
+## Süreç Tasarım Alanı
+
+**Süreç Tasarım Penceresinde** aktif olan süreç görüntülenir.  
+Yeni süreç başlatıldığında bu pencere boştur.
+
+- Eylem ikonları ve bağlantılar sürecin adımlarını ve iş akışını gösterir.  
+- Pencerenin boyutları değiştirilebilir.  
+- Süreç **yakınlaştırılıp uzaklaştırılabilir.**
+
