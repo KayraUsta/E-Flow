@@ -1,0 +1,84 @@
+Fatura Onaylama API'si http://{sunucunuz}:8094/Api/apiMethods/GelenFaturalarKabulV2
+
+{
+  "Mikro": {
+    "ApiKey": " ",
+    "CalismaYili": 2025,
+    "EBelge": [
+      {
+        "UUID": "B5E9813C-FCFB-4D0F-9004-DA4095729339"
+      }
+    ],
+    "FirmaKodu": "MIKROFLY",
+    "KullaniciKodu": "SRV",
+    "Sifre": "6eb815198339bdf12dfac29360caa6f8"
+  }
+}
+
+Burada ise sadece header bilgileri yeterli api anahtarı, çalışma yılı, firma kodu, kullanıcı kodu, MD5 ile hashlanmış şifre
+
+
+Mikro Header SELECT'i
+
+SELECT 
+    M.VALUE  AS APIKEY,
+    N.VALUE  AS CALISMA_YILI,
+    F.VALUE  AS FIRMAKOD,
+    K.VALUE  AS KULLANICIKODU,
+    S.VALUE  AS SIFRE
+FROM INST_DATA_MEMO     AS M WITH (NOLOCK)
+INNER JOIN INST_DATA_NUMERIC AS N WITH (NOLOCK)
+    ON M.CIID = N.CIID
+INNER JOIN INST_DATA_STRING  AS F WITH (NOLOCK)
+    ON M.CIID = F.CIID
+INNER JOIN INST_DATA_STRING  AS K WITH (NOLOCK)
+    ON M.CIID = K.CIID
+INNER JOIN INST_DATA_STRING  AS S WITH (NOLOCK)
+    ON M.CIID = S.CIID
+WHERE 
+    M.DID = 10165    -- APIKEY
+    AND N.DID = 10166 -- Calisma Yili
+    AND F.DID = 10167 -- Firma Kod
+    AND K.DID = 10169 -- Kullanici Kodu
+    AND S.DID = 10170 -- Sifre
+    AND M.CIID = %surec_numarasi%
+
+
+Fatura Satırları SELECT'i
+
+DECLARE @CIID INT = %surec_numarasi%;
+
+SELECT
+    'EFLMSRF'                                         AS cha_evrakno_seri,      -- sabit
+    BelgeNo.VALUE                                     AS cha_belge_no,          -- DID 10057 (STRING)
+
+    CONVERT(varchar(10), CAST(Tarih.VALUE AS datetime), 104) AS cha_tarihi,     -- 🔹 dd.MM.yyyy (string)
+
+    8                                                 AS cha_cinsi,             -- sabit
+    1                                                 AS cha_tip,               -- sabit
+    0                                                AS cha_evrak_tip,         -- sabit
+    Kod.VALUE                                         AS cha_kod,               -- DID 10101 (STRING)
+    1                                                 AS cha_miktari,           -- sabit
+    CAST(Aratoplam.VALUE AS DECIMAL(18,4))            AS cha_aratoplam,         -- DID 10068 (NUMERIC)
+    Aciklama.VALUE                                    AS cha_aciklama,          -- DID 10156 (STRING)
+    SrmMerkez.VALUE                                   AS cha_srmrkkodu,         -- DID 10155 (STRING)
+    CAST(DCins.VALUE AS INT)                          AS cha_d_cins,            -- DID 10192 (NUMERIC)
+    CAST(DKur.VALUE AS DECIMAL(18,6))                 AS cha_d_kur,             -- DID 10193 (NUMERIC)
+    8                                                 AS cha_vergipntr,         -- sabit
+    KasaHizmetKodu.VALUE                              AS cha_kasa_hizkod,       -- DID 10102 (STRING)
+    5                                                 AS cha_kasa_hizmet,       -- sabit
+    0                                                 AS cha_vade,              -- sabit
+    ProjeKodu.VALUE                                   AS cha_projekodu,          -- DID 10154 (STRING)
+	SrmMerkez.VALUE                                   AS cha_karsisrmrkkodu
+FROM (SELECT @CIID AS CIID) C
+LEFT JOIN INST_DATA_STRING  AS BelgeNo        WITH (NOLOCK) ON BelgeNo.CIID        = C.CIID AND BelgeNo.DID        = 10057
+LEFT JOIN INST_DATA_DATE    AS Tarih          WITH (NOLOCK) ON Tarih.CIID          = C.CIID AND Tarih.DID          = 10059
+LEFT JOIN INST_DATA_STRING  AS Kod            WITH (NOLOCK) ON Kod.CIID            = C.CIID AND Kod.DID            = 10101
+LEFT JOIN INST_DATA_NUMERIC AS Aratoplam      WITH (NOLOCK) ON Aratoplam.CIID      = C.CIID AND Aratoplam.DID      = 10068
+LEFT JOIN INST_DATA_STRING  AS Aciklama       WITH (NOLOCK) ON Aciklama.CIID       = C.CIID AND Aciklama.DID       = 10156
+LEFT JOIN INST_DATA_STRING  AS SrmMerkez      WITH (NOLOCK) ON SrmMerkez.CIID      = C.CIID AND SrmMerkez.DID      = 10155
+LEFT JOIN INST_DATA_NUMERIC AS DCins          WITH (NOLOCK) ON DCins.CIID          = C.CIID AND DCins.DID          = 10192
+LEFT JOIN INST_DATA_NUMERIC AS DKur           WITH (NOLOCK) ON DKur.CIID           = C.CIID AND DKur.DID           = 10193
+LEFT JOIN INST_DATA_STRING  AS KasaHizmetKodu WITH (NOLOCK) ON KasaHizmetKodu.CIID = C.CIID AND KasaHizmetKodu.DID = 10102
+LEFT JOIN INST_DATA_STRING  AS ProjeKodu      WITH (NOLOCK) ON ProjeKodu.CIID      = C.CIID AND ProjeKodu.DID      = 10154;
+
