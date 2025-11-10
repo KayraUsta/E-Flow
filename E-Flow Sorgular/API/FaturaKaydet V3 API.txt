@@ -1,0 +1,39 @@
+Fatura Gönderme API'si http://{sunucunuz}:8094/api/APIMethods/FaturaKaydetV3
+
+JSON
+
+{
+  "Mikro": {
+    "ApiKey": "HVrqC76o0vPg5ziHGu4uGglZQ3/fAslUtNsQdaWlGOsnaJWXnuI0RC9k2dwdQbm93TeWIcGmNoTFp77POoIuewqx2oOqEg69tZssYzyL7m4=",
+    "CalismaYili": 2025,
+    "FirmaKodu": "007",
+    "KullaniciKodu": "SRV",
+    "Sifre": "c12bb77cefb993c6d8b1435535d60ff8",
+    "evraklar": [
+      {
+        "cha_evrakno_seri": "EFLMSRF",
+        "cha_belge_no": "UPL2025000000784",
+        "cha_tarihi": "2025-10-16",
+        "cha_cinsi": 8,
+        "cha_tip": 1,
+        "cha_evrak_tip": 63,
+        "cha_kod": "505921",
+        "cha_miktari": 1,
+        "cha_aratoplam": 350.00,
+        "cha_aciklama": "Kargo masrafı",
+        "cha_srmrkkodu": "20.30.02.01",
+        "cha_d_cins": 0,
+        "cha_d_kur": 1,
+        "cha_vergipntr": 8,
+        "cha_kasa_hizkod": "MSF.000127",
+        "cha_kasa_hizmet": 0,
+        "cha_vade": 0,
+        "cha_projekodu": "",
+"cha_karsisrmrkkodu": "20.30.02.01",
+      }
+    ]
+  }
+}
+
+iki adet tablo oluşturulur biri header bilgiler için biri fatura satırları için headerin içinde api anahtarı, çalışma yılı, firma kodu, kullanıcı kodu, MD5 ile hashlanmış şifre diğer tablo satırlar için cha_evrakno_seri, cha_belge_no, cha_tarihi, cha_cinsi, cha_tip, cha_evrak_tip, cha_kod, cha_miktari, cha_aratoplam,  cha_aciklama, cha_smrkkodu, cha_d_cins, cha_d_kur, cha_vergipntr, cha_kasa_hizkod, cha_kasa_hizmet, cha_vade, cha_projekodu, cha_karsisrmkkodu verileri bulunmakta buradaki bazı veriler ilgili firma istediği bazı veriler muhasebe fişinin doğru oluşması vb sebeplerden
+
