@@ -1,0 +1,86 @@
+SELECT
+x.Rec.query('./ColumnData[1]').value('.', 'bit')'OnayaGidecek' ,
+'true',
+--x.Rec.query('./ColumnData[2]').value('.', 'bit')'Sec' ,
+x.Rec.query('./ColumnData[3]').value('.', 'nvarchar(max)')'Dokuman' ,
+x.Rec.query('./ColumnData[4]').value('(//@datatext)[1]','nvarchar(max)')'Tedarikci' ,
+x.Rec.query('./ColumnData[5]').value('.', 'nvarchar(250)')'MalzemeTuru' ,
+x.Rec.query('./ColumnData[6]').value('.', 'nvarchar(250)')'MalzemeAdi' ,
+x.Rec.query('./ColumnData[7]').value('.', 'nvarchar(250)')'MalzemeOzellik' ,
+x.Rec.query('./ColumnData[8]').value('.', 'float')'StokMiktar' ,
+x.Rec.query('./ColumnData[9]').value('.', 'float')'Miktar' ,
+x.Rec.query('./ColumnData[10]').value('.', 'nvarchar(250)')'Birim' ,
+x.Rec.query('./ColumnData[11]').value('.', 'float')'SonFiyat' ,
+x.Rec.query('./ColumnData[12]').value('.', 'float')'BirimFiyat' ,
+x.Rec.query('./ColumnData[13]').value('.', 'nvarchar(250)')'ParaBirimi' ,
+x.Rec.query('./ColumnData[14]').value('.', 'float')'Kur' ,
+x.Rec.query('./ColumnData[15]').value('.', 'float')'Toplam' ,
+x.Rec.query('./ColumnData[16]').value('.', 'nvarchar(250)')'Aciklama' ,
+x.Rec.query('./ColumnData[17]').value('.', 'nvarchar(250)')'CariVade' ,
+x.Rec.query('./ColumnData[18]').value('.', 'nvarchar(250)')'SatirTuru' ,
+x.Rec.query('./ColumnData[19]').value('.', 'nvarchar(250)')'Ambar' ,
+x.Rec.query('./ColumnData[20]').value('.', 'nvarchar(250)')'TalepYeri' ,
+x.Rec.query('./ColumnData[21]').value('.', 'nvarchar(250)')'BolumAdi' ,
+x.Rec.query('./ColumnData[22]').value('.', 'nvarchar(250)')'ProjeKodu' ,
+x.Rec.query('./ColumnData[23]').value('.', 'float')'UnitConv' ,
+x.Rec.query('./ColumnData[25]').value('.', 'nvarchar(250)')'Status' ,
+x.Rec.query('./ColumnData[26]').value('.', 'float')'PrPrice' 
+FROM (select cast(VALUE as XML) as xdt ,CIID 
+FROM eflow_alcas.DBO.INST_DATA_MEMO WHERE DID=14473 and CIID=%form_no_2%
+) e
+CROSS APPLY e.xdt.nodes('/LineItemTable/TableData/Data') as x(Rec)
+
+union all
+select 
+'false',
+'true',
+'',
+'',
+dt.MalzemeTuru,
+dt.MalzemeAdi,
+dt.MalzemeOzellik,
+dt.StokMiktar,
+dt.Miktar,
+dt.Birim,
+dt.SonFiyat,
+0,
+dt.ParaBirimi,
+1,
+0,
+dt.Aciklama,
+'',
+dt.MalzemeTuru,
+dt.Ambar,
+dt.TalepYeri,
+dt.BolumAdi,
+dt.ProjeKodu,
+0,
+'',
+0
+ from (
+SELECT
+x.Rec.query('./ColumnData[1]').value('.', 'bit')'Sec' ,
+x.Rec.query('./ColumnData[2]').value('.', 'nvarchar(250)')'TalepSahibi' ,
+x.Rec.query('./ColumnData[3]').value('.', 'nvarchar(250)')'MalzemeTuru' ,
+x.Rec.query('./ColumnData[4]').value('.', 'nvarchar(250)')'MalzemeAdi' ,
+x.Rec.query('./ColumnData[5]').value('.', 'nvarchar(250)')'MalzemeOzellik' ,
+x.Rec.query('./ColumnData[6]').value('.', 'float')'StokMiktar' ,
+x.Rec.query('./ColumnData[7]').value('.', 'float')'Miktar' ,
+x.Rec.query('./ColumnData[8]').value('.', 'nvarchar(250)')'Birim' ,
+x.Rec.query('./ColumnData[9]').value('.', 'float')'SonFiyat' ,
+x.Rec.query('./ColumnData[10]').value('.', 'nvarchar(250)')'ParaBirimi' ,
+x.Rec.query('./ColumnData[11]').value('.', 'float')'Toplam' ,
+x.Rec.query('./ColumnData[12]').value('.', 'nvarchar(250)')'Aciklama' ,
+x.Rec.query('./ColumnData[13]').value('.', 'nvarchar(250)')'ProjeKodu' ,
+x.Rec.query('./ColumnData[14]').value('.', 'nvarchar(250)')'TalepYeri' ,
+x.Rec.query('./ColumnData[15]').value('.', 'nvarchar(250)')'BolumAdi' ,
+x.Rec.query('./ColumnData[16]').value('.', 'nvarchar(250)')'Ambar' ,
+x.Rec.query('./ColumnData[17]').value('.', 'nvarchar(250)')'MasrafMerkezi' ,
+x.Rec.query('./ColumnData[18]').value('.', 'nvarchar(250)')'TalepFormNo' ,
+x.Rec.query('./ColumnData[19]').value('.', 'date')'TalepTarihi' ,
+x.Rec.query('./ColumnData[20]').value('.', 'int')'ID' 
+FROM (select cast(VALUE as XML) as xdt ,CIID 
+FROM eflow_alcas.DBO.INST_DATA_MEMO WHERE DID=10194 and CIID=%form_no_2%
+) e
+CROSS APPLY e.xdt.nodes('/LineItemTable/TableData/Data') as x(Rec)
+where x.Rec.query('./ColumnData[1]').value('.', 'bit')=1)dt
